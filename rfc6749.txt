@@ -164,9 +164,9 @@ Table of Contents
 
 1.  Introduction
 
-   In the traditional client-server authentication model, the client
-   requests an access-restricted resource (protected resource) on the
-   server by authenticating with the server using the resource owner's
+   In the traditional client-server authentication(n. 授权) model, the client
+   requests an access-restricted(访问受限的) resource (protected resource) on the
+   server by authenticating(n. 授权) with the server using the resource owner's
    credentials.  In order to provide third-party applications access to
    restricted resources, the resource owner shares its credentials with
    the third party.  This creates several problems and limitations:
@@ -195,40 +195,40 @@ Table of Contents
    and separating the role of the client from that of the resource
    owner.  In OAuth, the client requests access to resources controlled
    by the resource owner and hosted by the resource server, and is
-   issued a different set of credentials than those of the resource
+   issued(发行) a different set of credentials than those of the resource
    owner.
 
    Instead of using the resource owner's credentials to access protected
-   resources, the client obtains an access token -- a string denoting a
+   resources, the client obtains(获得) an access token -- a string denoting(指示) a
    specific scope, lifetime, and other access attributes.  Access tokens
    are issued to third-party clients by an authorization server with the
-   approval of the resource owner.  The client uses the access token to
+   approval(批准) of the resource owner.  The client uses the access token to
    access the protected resources hosted by the resource server.
 
    For example, an end-user (resource owner) can grant a printing
    service (client) access to her protected photos stored at a photo-
    sharing service (resource server), without sharing her username and
-   password with the printing service.  Instead, she authenticates
+   password with the printing service.  Instead, she authenticates(n.v.证明是真实的)
    directly with a server trusted by the photo-sharing service
-   (authorization server), which issues the printing service delegation-
+   (authorization server), which issues the printing service delegation(n. 授权; 委派; 代表)-
    specific credentials (access token).
 
    This specification is designed for use with HTTP ([RFC2616]).  The
    use of OAuth over any protocol other than HTTP is out of scope.
 
    The OAuth 1.0 protocol ([RFC5849]), published as an informational
-   document, was the result of a small ad hoc community effort.  This
+   document, was the result of a small ad hoc(ad hoc 特设的, 临时的) community effort.  This
    Standards Track specification builds on the OAuth 1.0 deployment
    experience, as well as additional use cases and extensibility
-   requirements gathered from the wider IETF community.  The OAuth 2.0
+   requirements gathered(集合,聚集,推断,了解) from the wider(宽的, 广泛的) IETF community.  The OAuth 2.0
    protocol is not backward compatible with OAuth 1.0.  The two versions
    may co-exist on the network, and implementations may choose to
-   support both.  However, it is the intention of this specification
+   support both.  However, it is the intention(意向) of this specification
    that new implementations support OAuth 2.0 as specified in this
    document and that OAuth 1.0 is used only to support existing
    deployments.  The OAuth 2.0 protocol shares very few implementation
    details with the OAuth 1.0 protocol.  Implementers familiar with
-   OAuth 1.0 should approach this document without any assumptions as to
+   OAuth 1.0 should approach(着手处理) this document without any assumptions as to
    its structure and details.
 
 1.1.  Roles
@@ -236,7 +236,7 @@ Table of Contents
    OAuth defines four roles:
 
    resource owner
-      An entity capable of granting access to a protected resource.
+      An entity capable(有能力的) of granting access to a protected resource.
       When the resource owner is a person, it is referred to as an
       end-user.
 
@@ -245,9 +245,9 @@ Table of Contents
       and responding to protected resource requests using access tokens.
 
    client
-      An application making protected resource requests on behalf of the
+      An application making protected resource requests on behalf(利益,维护,支持) of the
       resource owner and with its authorization.  The term "client" does
-      not imply any particular implementation characteristics (e.g.,
+      not imply(暗示) any particular implementation characteristics (e.g.,
       whether the application executes on a server, a desktop, or other
       devices).
 
@@ -283,7 +283,7 @@ Table of Contents
 
                      Figure 1: Abstract Protocol Flow
 
-   The abstract OAuth 2.0 flow illustrated in Figure 1 describes the
+   The abstract OAuth 2.0 flow illustrated(说明, 给..插图) in Figure 1 describes the
    interaction between the four roles and includes the following steps:
 
    (A)  The client requests authorization from the resource owner.  The
@@ -293,14 +293,14 @@ Table of Contents
 
    (B)  The client receives an authorization grant, which is a
         credential representing the resource owner's authorization,
-        expressed using one of four grant types defined in this
+        expressed(v. 表达) using one of four grant types defined in this
         specification or using an extension grant type.  The
         authorization grant type depends on the method used by the
         client to request authorization and the types supported by the
         authorization server.
 
    (C)  The client requests an access token by authenticating with the
-        authorization server and presenting the authorization grant.
+        authorization server and presenting(理解成: 提供) the authorization grant.
 
    (D)  The authorization server authenticates the client and validates
         the authorization grant, and if valid, issues an access token.
@@ -313,7 +313,7 @@ Table of Contents
 
    The preferred method for the client to obtain an authorization grant
    from the resource owner (depicted in steps (A) and (B)) is to use the
-   authorization server as an intermediary, which is illustrated in
+   authorization server as an intermediary(中间人, 媒介), which is illustrated in
    Figure 3 in Section 4.1.
 
 1.3.  Authorization Grant
@@ -331,8 +331,9 @@ Table of Contents
    as an intermediary between the client and resource owner.  Instead of
    requesting authorization directly from the resource owner, the client
    directs the resource owner to an authorization server (via its
-   user-agent as defined in [RFC2616]), which in turn directs the
+   user-agent as defined in [RFC2616(2616是HTTP 1.1规范)]), which in turn directs the
    resource owner back to the client with the authorization code.
+   先把资源所有者导向认证服务器, 之后再导回来.
 
    Before directing the resource owner back to the client with the
    authorization code, the authorization server authenticates the
@@ -384,7 +385,7 @@ Table of Contents
    Even though this grant type requires direct client access to the
    resource owner credentials, the resource owner credentials are used
    for a single request and are exchanged for an access token.  This
-   grant type can eliminate the need for the client to store the
+   grant type can eliminate(淘汰, 清除) the need for the client to store the
    resource owner credentials for future use, by exchanging the
    credentials with a long-lived access token or refresh token.
 
@@ -404,16 +405,16 @@ Table of Contents
 
    Access tokens are credentials used to access protected resources.  An
    access token is a string representing an authorization issued to the
-   client.  The string is usually opaque to the client.  Tokens
+   client.  The string is usually opaque(不透明的) to the client.  Tokens
    represent specific scopes and durations of access, granted by the
-   resource owner, and enforced by the resource server and authorization
+   resource owner, and enforced(强迫, 执行, 实施) by the resource server and authorization
    server.
 
-   The token may denote an identifier used to retrieve the authorization
+   The token may denote(代表) an identifier used to retrieve the authorization
    information or may self-contain the authorization information in a
-   verifiable manner (i.e., a token string consisting of some data and a
+   verifiable(可验证的) manner (i.e., a token string consisting of some data and a
    signature).  Additional authentication credentials, which are beyond
-   the scope of this specification, may be required in order for the
+   the scope of this specification, may be required in order for(请自行区别in order to/for) the
    client to use a token.
 
    The access token provides an abstraction layer, replacing different
@@ -424,11 +425,13 @@ Table of Contents
    to understand a wide range of authentication methods.
 
    Access tokens can have different formats, structures, and methods of
-   utilization (e.g., cryptographic properties) based on the resource
+   utilization(利用, 使用) (e.g., cryptographic(关于暗号的, 用密码写的) properties) based on the resource
    server security requirements.  Access token attributes and the
    methods used to access protected resources are beyond the scope of
-   this specification and are defined by companion specifications such
+   this specification and are defined by companion(陪伴, 伙同) specifications such
    as [RFC6750].
+
+   注: 更据资源服务器的要求, Access Token可以拥有不同的格式, 结构以及使用方法(比如加密属性等).
 
 1.5.  Refresh Token
 
@@ -436,9 +439,9 @@ Table of Contents
    tokens are issued to the client by the authorization server and are
    used to obtain a new access token when the current access token
    becomes invalid or expires, or to obtain additional access tokens
-   with identical or narrower scope (access tokens may have a shorter
+   with identical(相同的) or narrower(窄的) scope (access tokens may have a shorter
    lifetime and fewer permissions than authorized by the resource
-   owner).  Issuing a refresh token is optional at the discretion of the
+   owner).  Issuing a refresh token is optional at the discretion(慎重; 考虑周到; 判断力，辨别力; 自行决定的自由;) of the
    authorization server.  If the authorization server issues a refresh
    token, it is included when issuing an access token (i.e., step (D) in
    Figure 1).
@@ -447,7 +450,7 @@ Table of Contents
    the client by the resource owner.  The string is usually opaque to
    the client.  The token denotes an identifier used to retrieve the
    authorization information.  Unlike access tokens, refresh tokens are
-   intended for use only with authorization servers and are never sent
+   intended(预期的, 有意向的, 订婚的) for use only with authorization servers and are never sent
    to resource servers.
 
   +--------+                                           +---------------+
@@ -510,13 +513,13 @@ Table of Contents
 1.6.  TLS Version
 
    Whenever Transport Layer Security (TLS) is used by this
-   specification, the appropriate version (or versions) of TLS will vary
+   specification, the appropriate(适当的) version (or versions) of TLS will vary(变化)
    over time, based on the widespread deployment and known security
-   vulnerabilities.  At the time of this writing, TLS version 1.2
+   vulnerabilities(脆弱的).  At the time of this writing, TLS version 1.2
    [RFC5246] is the most recent version, but has a very limited
    deployment base and might not be readily available for
    implementation.  TLS version 1.0 [RFC2246] is the most widely
-   deployed version and will provide the broadest interoperability.
+   deployed version and will provide the broadest(最宽的) interoperability(互操作性).
 
    Implementations MAY also support additional transport-layer security
    mechanisms that meet their security requirements.
@@ -540,13 +543,13 @@ Table of Contents
 
    In addition, this specification leaves a few required components
    partially or fully undefined (e.g., client registration,
-   authorization server capabilities, endpoint discovery).  Without
+   authorization server capabilities(能力), endpoint discovery).  Without
    these components, clients must be manually and specifically
    configured against a specific authorization server and resource
    server in order to interoperate.
 
    This framework was designed with the clear expectation that future
-   work will define prescriptive profiles and extensions necessary to
+   work will define prescriptive(规定的) profiles and extensions necessary to
    achieve full web-scale interoperability.
 
 1.9.  Notational Conventions
@@ -554,6 +557,8 @@ Table of Contents
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
    specification are to be interpreted as described in [RFC2119].
+
+   注: RFC2119是关于这些词的.
 
    This specification uses the Augmented Backus-Naur Form (ABNF)
    notation of [RFC5234].  Additionally, the rule URI-reference is
