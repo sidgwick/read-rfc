@@ -584,7 +584,7 @@ Table of Contents
 
    Client registration does not require a direct interaction between the
    client and the authorization server.  When supported by the
-   authorization server, registration can rely on other means for
+   authorization server, registration can rely on other means(理解成: 手段) for
    establishing trust and obtaining the required client properties
    (e.g., redirection URI, client type).  For example, registration can
    be accomplished using a self-issued or third-party-issued assertion,
@@ -606,7 +606,7 @@ Table of Contents
 
    OAuth defines two client types, based on their ability to
    authenticate securely with the authorization server (i.e., ability to
-   maintain the confidentiality of their client credentials):
+   maintain the confidentiality(机密性) of their client credentials):
 
    confidential
       Clients capable of maintaining the confidentiality of their
@@ -622,7 +622,7 @@ Table of Contents
       authentication via any other means.
 
    The client type designation is based on the authorization server's
-   definition of secure authentication and its acceptable exposure
+   definition of secure authentication and its acceptable exposure(揭发, 暴露, 公开)
    levels of client credentials.  The authorization server SHOULD NOT
    make assumptions about the client type.
 
@@ -631,7 +631,7 @@ Table of Contents
    distributed client with both a confidential server-based component
    and a public browser-based component).  If the authorization server
    does not provide support for such clients or does not provide
-   guidance with regard to their registration, the client SHOULD
+   guidance with regard(认为, 注视, 涉及, 尊敬) to their registration, the client SHOULD
    register each component as a separate client.
 
    This specification has been designed around the following client
@@ -651,7 +651,7 @@ Table of Contents
       user-agent (e.g., web browser) on the device used by the resource
       owner.  Protocol data and credentials are easily accessible (and
       often visible) to the resource owner.  Since such applications
-      reside within the user-agent, they can make seamless use of the
+      reside(居住) within the user-agent, they can make seamless(无缝的的) use of the
       user-agent capabilities when requesting authorization.
 
    native application
@@ -662,7 +662,7 @@ Table of Contents
       application can be extracted.  On the other hand, dynamically
       issued credentials such as access tokens or refresh tokens can
       receive an acceptable level of protection.  At a minimum, these
-      credentials are protected from hostile servers with which the
+      credentials are protected from hostile(怀有敌意的) servers with which the
       application may interact.  On some platforms, these credentials
       might be protected from other applications residing on the same
       device.
@@ -703,7 +703,7 @@ Table of Contents
 
 2.3.1.  Client Password
 
-   Clients in possession of a client password MAY use the HTTP Basic
+   Clients in possession(有, 占有) of a client password MAY use the HTTP Basic
    authentication scheme as defined in [RFC2617] to authenticate with
    the authorization server.  The client identifier is encoded using the
    "application/x-www-form-urlencoded" encoding algorithm per
@@ -751,8 +751,8 @@ Table of Contents
    Section 1.6 when sending requests using password authentication.
 
    Since this client authentication method involves a password, the
-   authorization server MUST protect any endpoint utilizing it against
-   brute force attacks.
+   authorization server MUST protect any endpoint utilizing(利用) it against
+   brute(畜生, 残暴的人, 无理性的) force attacks.
 
 2.3.2.  Other Authentication Methods
 
@@ -767,7 +767,7 @@ Table of Contents
    This specification does not exclude the use of unregistered clients.
    However, the use of such clients is beyond the scope of this
    specification and requires additional security analysis and review of
-   its interoperability impact.
+   its interoperability impact(影响, 注意和implicit隐含,隐式区别).
 
 3.  Protocol Endpoints
 
